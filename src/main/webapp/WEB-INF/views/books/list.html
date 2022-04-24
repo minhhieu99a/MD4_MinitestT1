@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Books</title>
+</head>
+<body>
+<a href="/create">Create New Book</a>
+<h2>Books</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Author</th>
+        <th>Name Of Category</th>
+    </tr>
+    <th:block th:each="book : ${listBooks}" >
+    <tr>
+        <td th:text="${book.name}"></td>
+        <td th:text="${book.price}"></td>
+        <td th:text="${book.author}"></td>
+        <td ><a th:href="@{/view-category/__${book.category.id}__}" th:text="${book.category.name}"></a></td>
+        <td><a th:href="@{/edit/__${book.id}__}">Edit</a></td>
+        <td><a th:href="@{/delete/__${book.id}__}">Delete</a></td>
+    </tr>
+    </th:block>
+</table>
+
+<form method="GET" th:action="@{/view-name}">
+    <input type="text"  th:name="name">
+    <input type="submit" value="Submit"/>
+</form>
+
+</body>
+</html>
